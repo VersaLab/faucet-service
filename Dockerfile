@@ -26,8 +26,10 @@ FROM alpine
 
 RUN apk add --no-cache ca-certificates
 
-COPY --from=backend /backend-build/eth-faucet /app/eth-faucet
+WORKDIR /app
+
+COPY --from=backend /backend-build/eth-faucet ./eth-faucet
 
 EXPOSE 8080
 
-ENTRYPOINT ["/app/eth-faucet"]
+ENTRYPOINT ["./eth-faucet"]

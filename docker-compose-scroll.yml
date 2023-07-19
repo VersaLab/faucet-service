@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  faucet:
+    container_name: faucet-scroll
+    build: .
+    restart: unless-stopped
+    ports:
+      - 10022:8080
+    volumes:
+      - .env-scroll:/app/.env
+    env_file:
+      - .env-scroll
+    command: -faucet.amount 5
+    environment:
+      - TZ=Asia/Shanghai

@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  faucet:
+    container_name: faucet-polygon
+    build: .
+    restart: unless-stopped
+    ports:
+      - 10021:8080
+    volumes:
+      - .env-polygon:/app/.env
+    env_file:
+      - .env-polygon
+    command: -faucet.amount 50
+    environment:
+      - TZ=Asia/Shanghai
