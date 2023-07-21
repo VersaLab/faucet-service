@@ -11,6 +11,6 @@ services:
       - .env-scroll:/app/.env
     env_file:
       - .env-scroll
-    command: -faucet.amount 5
+    command: -faucet.amount 10
     environment:
       - TZ=Asia/Shanghai

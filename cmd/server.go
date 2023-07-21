@@ -26,7 +26,7 @@ var (
 	versionFlag  = flag.Bool("version", false, "Print version number")
 
 	payoutFlag   = flag.Int("faucet.amount", 0, "Number of Ethers to transfer per user request")
-	intervalFlag = flag.Int("faucet.minutes", 5, "Number of minutes to wait between funding rounds")
+	intervalFlag = flag.Int("faucet.minutes", 3, "Number of minutes to wait between funding rounds")
 	netnameFlag  = flag.String("faucet.name", "testnet", "Network name to display on the frontend")
 
 	keyJSONFlag  = flag.String("wallet.keyjson", os.Getenv("KEYSTORE"), "Keystore file to fund user requests with")
