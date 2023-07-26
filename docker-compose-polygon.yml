@@ -11,6 +11,6 @@ services:
       - .env-polygon:/app/.env
     env_file:
       - .env-polygon
-    command: -faucet.amount 10
+    command: -faucet.amount 100 -faucet.minutes 1
     environment:
       - TZ=Asia/Shanghai

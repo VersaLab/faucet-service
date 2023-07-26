@@ -114,7 +114,7 @@ func (s *Server) handleClaim() http.HandlerFunc {
 			"txHash":  txHash,
 			"address": address,
 		}).Info("Funded directly successfully")
-		resp := claimResponse{Message: fmt.Sprintf("Txhash: %s", txHash)}
+		resp := claimResponse{Message: fmt.Sprintf("TransactionHash:%s", txHash)}
 		renderJSON(w, resp, http.StatusOK)
 	}
 }

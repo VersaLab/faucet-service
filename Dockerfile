@@ -8,7 +8,7 @@ RUN yarn install
 COPY web ./
 RUN yarn build
 
-FROM golang:1.17-alpine as backend
+FROM golang:1.20.6-alpine as backend
 
 RUN apk add --no-cache gcc musl-dev linux-headers
 
@@ -29,7 +29,5 @@ RUN apk add --no-cache ca-certificates
 WORKDIR /app
 
 COPY --from=backend /backend-build/eth-faucet ./eth-faucet
-
-EXPOSE 8080
 
 ENTRYPOINT ["./eth-faucet"]
