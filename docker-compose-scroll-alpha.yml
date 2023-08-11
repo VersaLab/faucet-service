@@ -2,15 +2,15 @@ version: "3.9"
 
 services:
   faucet:
-    container_name: faucet-scroll
+    container_name: faucet-scroll-alpha
     build: .
     restart: unless-stopped
     ports:
       - 10022:8080
     volumes:
-      - .env-scroll:/app/.env
+      - .env-scroll-alpha:/app/.env
     env_file:
-      - .env-scroll
+      - .env-scroll-alpha
     command: -faucet.amount 10 -faucet.minutes 1
     environment:
       - TZ=Asia/Shanghai

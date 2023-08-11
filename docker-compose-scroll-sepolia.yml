@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  faucet:
+    container_name: faucet-scroll-sepolia
+    build: .
+    restart: unless-stopped
+    ports:
+      - 10023:8080
+    volumes:
+      - .env-scroll-sepolia:/app/.env
+    env_file:
+      - .env-scroll-sepolia
+    command: -faucet.amount 10 -faucet.minutes 1
+    environment:
+      - TZ=Asia/Shanghai
