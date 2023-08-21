@@ -11,6 +11,6 @@ services:
       - .env-polygon-mumbai:/app/.env
     env_file:
       - .env-polygon-mumbai
-    command: -faucet.amount 100 -faucet.minutes 1 -proxycount 1
+    command: -faucet.amount 100 -faucet.minutes 5 -proxycount 1
     environment:
       - TZ=Asia/Shanghai

@@ -11,6 +11,6 @@ services:
       - .env-scroll-alpha:/app/.env
     env_file:
       - .env-scroll-alpha
-    command: -faucet.amount 10 -faucet.minutes 1 -proxycount 1
+    command: -faucet.amount 10 -faucet.minutes 5 -proxycount 1
     environment:
       - TZ=Asia/Shanghai
