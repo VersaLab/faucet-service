@@ -5,16 +5,18 @@ type Config struct {
 	httpPort   int
 	interval   int
 	payout     int
+	gasprice   int
 	proxyCount int
 	queueCap   int
 }
 
-func NewConfig(network string, httpPort, interval, payout, proxyCount, queueCap int) *Config {
+func NewConfig(network string, httpPort, interval, payout, gasprice, proxyCount, queueCap int) *Config {
 	return &Config{
 		network:    network,
 		httpPort:   httpPort,
 		interval:   interval,
 		payout:     payout,
+		gasprice:   gasprice,
 		proxyCount: proxyCount,
 		queueCap:   queueCap,
 	}

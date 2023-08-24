@@ -14,7 +14,7 @@ import (
 
 type TxBuilder interface {
 	Sender() common.Address
-	Transfer(ctx context.Context, to string, value *big.Int) (common.Hash, error)
+	Transfer(ctx context.Context, to string, value *big.Int, gasprice *big.Int) (common.Hash, error)
 }
 
 type TxBuild struct {
@@ -49,19 +49,21 @@ func (b *TxBuild) Sender() common.Address {
 	return b.fromAddress
 }
 
-func (b *TxBuild) Transfer(ctx context.Context, to string, value *big.Int) (common.Hash, error) {
+func (b *TxBuild) Transfer(ctx context.Context, to string, value *big.Int, gasprice *big.Int) (common.Hash, error) {
 	nonce, err := b.client.PendingNonceAt(ctx, b.Sender())
 	if err != nil {
 		return common.Hash{}, err
 	}
 
 	gasLimit := uint64(50000)
-	gasPrice, err := b.client.SuggestGasPrice(ctx)
-	if err != nil {
-		return common.Hash{}, err
-	}
-	if gasPrice.Cmp(big.NewInt(1000000000)) < 0 {
-		gasPrice = big.NewInt(1000000000)
+	var gasPrice *big.Int
+	if gasprice.Cmp(big.NewInt(0)) == 0 {
+		gasPrice, err = b.client.SuggestGasPrice(ctx)
+		if err != nil {
+			return common.Hash{}, err
+		}
+	} else {
+		gasPrice = gasprice
 	}
 
 	toAddress := common.HexToAddress(to)
