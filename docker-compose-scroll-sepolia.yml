@@ -11,6 +11,6 @@ services:
       - .env-scroll-sepolia:/app/.env
     env_file:
       - .env-scroll-sepolia
-    command: -faucet.amount 20 -faucet.minutes 1 -faucet.gasprice 1000000000 -proxycount 1
+    command: -faucet.amount 20 -faucet.minutes 1 -proxycount 1
     environment:
       - TZ=Asia/Shanghai
