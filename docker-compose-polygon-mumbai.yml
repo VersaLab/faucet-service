@@ -6,11 +6,11 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      - 10021:8080
+      - 10112:8080
     volumes:
       - .env-polygon-mumbai:/app/.env
     env_file:
       - .env-polygon-mumbai
-    command: -faucet.amount 100 -faucet.minutes 1 -proxycount 1
+    command: -proxycount 1 -faucet.ethamount 100000000000000000 -faucet.minutes 1 -faucet.networkname polygon-mumbai
     environment:
       - TZ=Asia/Shanghai

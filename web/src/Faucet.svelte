@@ -6,12 +6,12 @@
 
   let input = null;
   let faucetInfo = {
-    account: '0x0000000000000000000000000000000000000000',
-    network: 'testnet',
-    payout: 1,
+    FaucetEOAAddress: '0x0000000000000000000000000000000000000000',
+    NetworkName: 'testnet',
+    ETHAmount: 1,
   };
 
-  $: document.title = `${capitalize(faucetInfo.network)} Faucet`;
+  $: document.title = `${capitalize(faucetInfo.NetworkName)} Faucet`;
 
   onMount(async () => { 
     const res = await fetch('/api/info');
@@ -76,10 +76,10 @@
       <div class="container has-text-centered">
         <div class="column is-6 is-offset-3">
           <h1 class="title">
-            Request {faucetInfo.payout/1000} Native Token
+            Request {faucetInfo.ETHAmount/1000000000000000000} Native Token
           </h1>
           <h2 class="subtitle">
-            Serving from {faucetInfo.account}
+            Serving from {faucetInfo.FaucetEOAAddress}
           </h2>
           <div class="box">
             <div class="field is-grouped">

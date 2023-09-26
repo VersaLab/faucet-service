@@ -15,6 +15,7 @@ import (
 type TxBuilder interface {
 	Sender() common.Address
 	Transfer(ctx context.Context, to string, value *big.Int, gasprice *big.Int) (common.Hash, error)
+	MultiTransfer(ctx context.Context, to string, data []byte, gasprice *big.Int) (common.Hash, error)
 }
 
 type TxBuild struct {
@@ -71,6 +72,41 @@ func (b *TxBuild) Transfer(ctx context.Context, to string, value *big.Int, gaspr
 		Nonce:    nonce,
 		To:       &toAddress,
 		Value:    value,
+		Gas:      gasLimit,
+		GasPrice: gasPrice,
+	})
+
+	signedTx, err := types.SignTx(unsignedTx, b.signer, b.privateKey)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return signedTx.Hash(), b.client.SendTransaction(ctx, signedTx)
+}
+
+func (b *TxBuild) MultiTransfer(ctx context.Context, to string, data []byte, gasprice *big.Int) (common.Hash, error) {
+	nonce, err := b.client.PendingNonceAt(ctx, b.Sender())
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	toAddress := common.HexToAddress(to)
+	gasLimit := uint64(100000)
+	var gasPrice *big.Int
+	if gasprice.Cmp(big.NewInt(0)) == 0 {
+		gasPrice, err = b.client.SuggestGasPrice(ctx)
+		if err != nil {
+			return common.Hash{}, err
+		}
+	} else {
+		gasPrice = gasprice
+	}
+
+	unsignedTx := types.NewTx(&types.LegacyTx{
+		Nonce:    nonce,
+		To:       &toAddress,
+		Value:    big.NewInt(0),
+		Data:     data,
 		Gas:      gasLimit,
 		GasPrice: gasPrice,
 	})

@@ -6,11 +6,11 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      - 10022:8080
+      - 10113:8080
     volumes:
       - .env-scroll-alpha:/app/.env
     env_file:
       - .env-scroll-alpha
-    command: -faucet.amount 10 -faucet.minutes 1 -proxycount 1
+    command: -proxycount 1 -faucet.ethamount 10000000000000000 -faucet.minutes 1 -faucet.networkname scroll-alpha
     environment:
       - TZ=Asia/Shanghai

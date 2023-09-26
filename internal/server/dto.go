@@ -21,9 +21,13 @@ type claimResponse struct {
 }
 
 type infoResponse struct {
-	Account string `json:"account"`
-	Network string `json:"network"`
-	Payout  string `json:"payout"`
+	NetworkName           string `json:"NetworkName"`
+	FaucetEOAAddress      string `json:"FaucetEOAAddress"`
+	FaucetContractAddress string `json:"FaucetContractAddress"`
+	ETHAmount             string `json:"ETHAmount"`
+	USDTAmount            string `json:"USDTAmount"`
+	USDCAmount            string `json:"USDCAmount"`
+	Interval              string `json:"Interval"`
 }
 
 type malformedRequest struct {
