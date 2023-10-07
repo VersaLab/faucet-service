@@ -113,11 +113,11 @@ func (s *Server) handleClaim() http.HandlerFunc {
 			return
 		}
 
-		ctx, cancel := context.WithTimeout(r.Context(), 10*time.Second)
+		ctx, cancel := context.WithTimeout(r.Context(), 5*time.Second)
 		defer cancel()
 		var txHash common.Hash
 		var err error
-		if s.cfg.contractAddress == "" {
+		if len(s.cfg.contractAddress) == 0 {
 			txHash, err = s.Transfer(ctx, address, chain.EtherToWei(int64(s.cfg.ethAmount)), big.NewInt(int64(s.cfg.gasPrice)))
 		} else {
 			ABI := `[

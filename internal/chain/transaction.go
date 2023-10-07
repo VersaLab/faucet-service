@@ -91,7 +91,7 @@ func (b *TxBuild) MultiTransfer(ctx context.Context, to string, data []byte, gas
 	}
 
 	toAddress := common.HexToAddress(to)
-	gasLimit := uint64(500000)
+	gasLimit := uint64(200000)
 	var gasPrice *big.Int
 	if gasprice.Cmp(big.NewInt(0)) == 0 {
 		gasPrice, err = b.client.SuggestGasPrice(ctx)
