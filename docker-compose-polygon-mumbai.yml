@@ -2,15 +2,15 @@ version: "3.9"
 
 services:
   faucet:
-    container_name: faucet-polygon-mumbai
+    container_name: faucet-polygon-mumbai-v1.2
     build: .
     restart: unless-stopped
     ports:
-      - 40003:8080
+      - 10203:8080
     volumes:
       - .env-polygon-mumbai:/app/.env
     env_file:
       - .env-polygon-mumbai
-    command: -proxycount 1 -faucet.ethamount 100000000000000000 -faucet.minutes 1 -faucet.networkname polygon-mumbai
+    command: -proxycount 1 -faucet.contract 0x81F023706f9E22F38D8De0d6F9f90b6c03914A82 -faucet.ethamount 10000000000000000 -faucet.usdcamount 50000000 -faucet.minutes 1 -faucet.networkname polygon-mumbai
     environment:
       - TZ=Asia/Shanghai

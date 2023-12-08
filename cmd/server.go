@@ -17,8 +17,8 @@ import (
 )
 
 var (
-	appVersion = "v1.1"
-	chainIDMap = map[string]int{"scroll-sepolia": 534351, "polygon-mumbai": 80001, "scroll-alpha": 534353}
+	appVersion = "v1.2.1"
+	chainIDMap = map[string]int{"scroll-sepolia": 534351, "polygon-mumbai": 80001, "arbitrum-goerli": 421613, "optimism-goerli": 420, "base-goerli": 84531}
 
 	httpPortFlag   = flag.Int("httpport", 8080, "Listener port to serve HTTP connection")
 	proxyCountFlag = flag.Int("proxycount", 0, "Count of reverse proxies in front of the server")
