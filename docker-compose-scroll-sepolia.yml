@@ -11,6 +11,6 @@ services:
       - .env-scroll-sepolia:/app/.env
     env_file:
       - .env-scroll-sepolia
-    command: -proxycount 1 -faucet.contract 0x81F023706f9E22F38D8De0d6F9f90b6c03914A82 -faucet.ethamount 50000000000000000 -faucet.usdtamount 50000000 -faucet.usdcamount 50000000 -faucet.minutes 1 -faucet.networkname scroll-sepolia
+    command: -proxycount 1 -faucet.contract 0x81F023706f9E22F38D8De0d6F9f90b6c03914A82 -faucet.ethamount 1000000000000000 -faucet.usdcamount 100000000 -faucet.minutes 1 -faucet.networkname scroll-sepolia
     environment:
       - TZ=Asia/Shanghai
